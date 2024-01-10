@@ -3,19 +3,21 @@
 {% block title %}Formations{% endblock %}
 
 {% block body %}
-    <h1>Formations</h1>
-<section class="container">
-{% for formation in formations %}
-    <article>
-    <h4>{{ formation.titre }}</h4>
-    <p>{{ formation.resume }}</p>
-    <p>{{ formation.duree }} jours</p>
 
-    <p><a href="{{ formation.id }}">Lien</a></p>
-    </article>
+    <h1>Formations</h1>
+<section class="container d-flex justify-content-between">
+
+{% for formation in formations %}
+    <div class="card" style="width: 18rem;">
+  <div class="card-body">
+    <h5 class="card-title">{{ formation.titre }}</h5>
+    <h6 class="card-subtitle mb-2 text-muted">{{ formation.resume }}</h6>
+    <p class="card-text">{{ formation.duree }} jours</p>
+    <a href="{{ formation.id }}" class="card-link">Lien formation</a>
+  </div>
+</div>
 {% endfor %}
 </section>
-    
+    <div class="container"><button type="button" class="btn btn-primary" href="{{ path('app_formations_new') }}">Create new</button></div>
 
-    <a href="{{ path('app_formations_new') }}">Create new</a>
 {% endblock %}
