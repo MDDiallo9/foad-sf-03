@@ -1,45 +1,21 @@
 {% extends 'base.html.twig' %}
 
-{% block title %}Formations index{% endblock %}
+{% block title %}Formations{% endblock %}
 
 {% block body %}
-    <h1>Formations index</h1>
+    <h1>Formations</h1>
+<section class="liens">
+{% for formation in formations %}
+    <article>
+    <h4>{{ formation.titre }}</h4>
+    <p>{{ formation.resume }}</p>
+    <p>{{ formation.duree }} jours</p>
 
-    <table class="table">
-        <thead>
-            <tr>
-                <th>Id</th>
-                <th>Titre</th>
-                <th>Resume</th>
-                <th>Description</th>
-                <th>Duree</th>
-                <th>Niveau</th>
-                <th>Lieu</th>
-                <th>actions</th>
-            </tr>
-        </thead>
-        <tbody>
-        {% for formation in formations %}
-            <tr>
-                <td>{{ formation.id }}</td>
-                <td>{{ formation.titre }}</td>
-                <td>{{ formation.resume }}</td>
-                <td>{{ formation.description }}</td>
-                <td>{{ formation.duree }}</td>
-                <td>{{ formation.niveau }}</td>
-                <td>{{ formation.lieu }}</td>
-                <td>
-                    <a href="{{ path('app_formations_show', {'id': formation.id}) }}">show</a>
-                    <a href="{{ path('app_formations_edit', {'id': formation.id}) }}">edit</a>
-                </td>
-            </tr>
-        {% else %}
-            <tr>
-                <td colspan="8">no records found</td>
-            </tr>
-        {% endfor %}
-        </tbody>
-    </table>
+    <p><a href="{{ formation.id }}">Lien</a></p>
+    </article>
+{% endfor %}
+</section>
+    
 
     <a href="{{ path('app_formations_new') }}">Create new</a>
 {% endblock %}
